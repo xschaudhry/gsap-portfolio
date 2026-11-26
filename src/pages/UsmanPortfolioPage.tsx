@@ -61,9 +61,11 @@ const projects = [
     kind: "Interactive prototype · Simulated texts",
     title: "HVAC Speed-to-Lead",
     description:
-      "A working prototype of a first reply inside a minute: each new inquiry is sorted by urgency, texted open windows, and followed up until it books, asks for a call, or opts out. The company, leads, and texts are all simulated.",
+      "I built this to explore the first few minutes after an HVAC inquiry arrives: sort it by urgency, offer visit windows in a simulated text, and choose the next step from the reply. All data is fictional.",
     href: "/demos/hvac-speed-to-lead/index.html",
     linkText: "Open the Speed-to-Lead demo",
+    sourceHref: "https://github.com/xschaudhry/hvac-speed-to-lead-demo",
+    sourceText: "View the source on GitHub",
     visual: "speed-to-lead",
   },
 ];
@@ -232,7 +234,7 @@ export default function UsmanPortfolioPage() {
             </div>
             <div className="hero-statement hero-reveal">
               <p className="hero-location"><span aria-hidden="true">◎</span> ISLAMABAD, PAKISTAN <i>·</i> WORKING REMOTELY</p>
-              <h2>AI<br /><em>SYSTEMS</em></h2>
+              <h2><span>AI</span><em>SYSTEMS</em></h2>
               <p className="hero-summary">I build practical AI and automation systems that help service teams answer faster, follow up consistently, and turn more inquiries into booked work.</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#work">EXPLORE SELECTED WORK <span aria-hidden="true">↗</span></a>
@@ -262,11 +264,14 @@ export default function UsmanPortfolioPage() {
           <div className="section-intro-row"><h2 className="section-heading scroll-reveal">See the systems <em>in action.</em></h2><p className="section-side-copy scroll-reveal">Interactive product demonstrations built around service-business workflows. Each demo uses simulated shops, customers, and prices—not client data or client results.</p></div>
           <div className="project-grid">
             {projects.map((project) => (
-              <article className={`project-card project-${project.visual} scroll-reveal`} key={project.number}>
+              <article className={`project-card project-${project.visual}${project.sourceHref ? " has-source" : ""} scroll-reveal`} key={project.number}>
                 <a className="project-card-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`${project.linkText} (opens in a new tab)`}>
                   <div className="project-visual"><ProjectVisual kind={project.visual} /><span className="project-visual-arrow" aria-hidden="true">↗</span></div>
                   <div className="project-info"><div className="project-meta"><span>{project.number} / {String(projects.length).padStart(2, "0")}</span><span>{project.kind}</span></div><h3>{project.title}</h3><p>{project.description}</p><span className="project-cta">{project.linkText} <span aria-hidden="true">↗</span></span></div>
                 </a>
+                {project.sourceHref && (
+                  <a className="project-source-link" href={project.sourceHref} target="_blank" rel="noreferrer" aria-label={`${project.sourceText} (opens in a new tab)`}>{project.sourceText} <span aria-hidden="true">↗</span></a>
+                )}
               </article>
             ))}
           </div>
